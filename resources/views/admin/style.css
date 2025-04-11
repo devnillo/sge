@@ -1,0 +1,25 @@
+@reference '../../css/app.css';
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form{
+    @apply flex flex-col items-center justify-center;   
+}
+.content{
+    @apply w-full md:w-2/3 xl:w-1/3 m-auto bg-white p-5 py-10 rounded-xl shadow-2xl;
+}
+input{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.input-area{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
