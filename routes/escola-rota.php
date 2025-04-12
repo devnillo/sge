@@ -12,3 +12,4 @@ Route::get('/get', function () {
     $escola =  Admin::with('escolas')->get();
     return count($escola[0]->escolas);
 })->name('escola.get');
+?>
