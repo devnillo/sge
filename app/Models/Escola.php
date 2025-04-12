@@ -17,9 +17,9 @@ class Escola extends User
         'password',
         'admin_id'
     ];
-    public function administracao(): BelongsTo
+    public function secretaria(): BelongsTo
     {
-        return $this->belongsTo(Admin::class);
+        return $this->belongsTo(Admin::class, 'admin_id');
     }
     public function diretor(): HasOne
     {
