@@ -22,25 +22,16 @@
 
             <h1>USER: {{ auth('admin')->user()->name }}</h1>
         </x-header>
-        <main class="px-2 w-screen">
+        <main class="px-2 w-screen flex flex-col gap-2">
             <h2 class="text-2xl font-bold mb-4">Opções</h2>
-            <div class="cards ">
-                <div class="card">
-                    <a href={{ route('escola.register') }}>
-                        Dashboard
-                    </a>
+            @foreach ($escolas as $escola)
+                <div class="flex gap-2 bg-white p-2">
+                    <h1>{{ $escola->name }}</h1>
+                    @can(Auth::guard('admin')->user()->isAdmin)
+                        <a href='editar/{{$escola->id}}' class="bg-blue-500 text-white">Editar</a>
+                    @endcan
                 </div>
-                <div class="card">
-                    <a href={{ route('escola.home') }}>
-                        Escolas
-                    </a>
-                </div>
-                <div class="card">
-                    <a href={{ route('escola.register') }}>
-                        Educasenso
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </main>
     </div>
     
