@@ -16,7 +16,7 @@
                     <a href="">Alunos</a>
                 </li>
                 <li>
-                    <a href="">Professores</a>
+                    <a href={{ route('professor.register') }}>Professores</a>
                 </li>
             </x-slot>
 

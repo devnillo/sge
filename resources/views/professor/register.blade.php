@@ -15,6 +15,10 @@
                 @error('email')
                 <p class="error">{{ $message }}</p>
                 @enderror
+                <x-input name="cpf" type="text" placeholder="seu CPF" />
+                @error('cpf')
+                <p class="error">{{ $message }}</p>
+                @enderror
                 <x-input name="password" type="password" placeholder="Senha" autocomplete="current-password" />
                 @error('password')
                 <p class="error">{{ $message }}</p>
