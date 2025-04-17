@@ -2,9 +2,8 @@
     <title>{{ $title ?? 'Register' }}</title>
     @vite('resources/css/app.css')
 </head>
-<body class="hidden">
-    <div class="content">
+<body class="">
+    <div class="content w-full md:w-2/4">
         {{ $slot }} 
-        {{ $form }}
     </div>
 </body>

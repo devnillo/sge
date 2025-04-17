@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User;
 
@@ -21,8 +22,12 @@ class Escola extends User
     {
         return $this->belongsTo(Admin::class, 'admin_id');
     }
-    public function diretor(): HasOne
+    public function diretor(): HasMany
     {
-        return $this->hasOne(Diretor::class);
+        return $this->hasMany(Diretor::class, 'escola_id');
+    }
+    public function professores(): HasMany
+    {
+        return $this->hasMany(Professor::class);
     }
 }

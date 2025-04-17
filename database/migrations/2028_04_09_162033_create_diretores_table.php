@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
-            $table->string('cpf');
-            $table->date('bithdate');
-            $table->string('mae');
-            $table->string('pai');
+            $table->string('password')->nullable();
+            $table->string('cpf')->nullable();
+            $table->date('bithdate')->nullable();
+            $table->string('mae')->nullable();
+            $table->string('pai')->nullable();
             $table->foreignId('escola_id')->constrained('escolas')->onDelete('cascade');
             $table->timestamps();
         });

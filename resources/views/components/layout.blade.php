@@ -6,7 +6,7 @@
     <title>{{ $title ?? 'SGE' }}</title>
     @vite('resources/css/app.css')
   </head>
-  <body class="">
+  <body>
     {{ $slot }}
   </body>
 </html>

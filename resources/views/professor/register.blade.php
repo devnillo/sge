@@ -4,10 +4,10 @@
         Criar Escola
     </x-slot>
     <div class="main w-full">
-        <x-login title="Registrar Escola" description=' '>            
-            <form action={{ route("escola.register.store") }} method="POST">
+        <x-login title="Registrar Professor" description=' '>            
+            <form action={{ route("professor.register.store") }} method="POST">
                 @csrf
-                <x-input name="name" type="text" placeholder="Nome da Escola"/>
+                <x-input name="name" type="text" placeholder="Nome do Professor"/>
                 @error('name')
                 <p class="error">{{ $message }}</p>
                 @enderror
@@ -19,7 +19,7 @@
                 @error('password')
                 <p class="error">{{ $message }}</p>
                 @enderror
-                <input name="admin_id" type="hidden" value={{ Auth::guard('admin')->user()->id }} />
+                <input name="escola_id" type="text"  placeholder="id escola"/>
                 <x-button type="submit" title="Criar Escola"/>
             </form>
         </x-login>

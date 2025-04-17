@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User;
 
-class Diretor extends Model
+class Diretor extends User
 {
     protected $table = 'diretores';
     protected $guard = 'diretor';
