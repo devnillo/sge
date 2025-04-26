@@ -26,8 +26,7 @@ Route::prefix('admin')->group(function () {
     Route::get('escola/lista', [EscolaController::class, 'getAll'])->name('escola.lista')->middleware('auth:admin');
     // Route::view('/escola/register', 'escola.register')->name('diretor.register');
 
-    Route::get('/professor/register', [ProfessorController::class, 'register'])->name('professor.register');
-    Route::post('/professor/register', [ProfessorController::class, 'store'])->name('professor.register.store');
+    
 });
 
 ?>

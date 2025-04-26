@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Professor;
+// use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfessorController extends Controller
@@ -12,6 +14,11 @@ class ProfessorController extends Controller
     {
         return view('professor.register');
     }
+    public function login()
+    {
+        return view('professor.login');
+    }
+    
     public function store(Request $request)
     {
         $credentials = $request->validate([
@@ -33,6 +40,24 @@ class ProfessorController extends Controller
             $professor->save();
 
             return redirect()->route('admin.home');
+        }
+        return back()->withErrors($credentials);
+    }
+    public function loginAction(Request $request)
+    {
+        $credentials = $request->validate([
+            'uuid' => 'required',
+            'password' => 'required'
+        ], [
+            'uuid' => 'Código de professor inválido.',
+            'password' => 'Digite a senha.'
+        ]);
+        $professor = Professor::where('uuid', $credentials['uuid'])->first();
+        if ($credentials && $professor) {
+            if (Auth::guard('professor')->attempt($credentials)) {
+                return redirect()->intended('/professor/home');
+            }
+            
         }
         return back()->withErrors($credentials);
     }

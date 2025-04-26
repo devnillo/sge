@@ -17,5 +17,17 @@ class AuthController extends Controller
             $request->session()->regenerateToken();
             return redirect()->route('admin.login');
         }
+        if (Auth::guard('professor')->check()) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('professor.login');
+        }
+        if (Auth::guard('diretor')->check()) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('diretor.login');
+        }
     }
 }

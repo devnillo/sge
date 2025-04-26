@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('aluno')->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        return view('welcome');
     })->middleware('auth');
 });
 ?>

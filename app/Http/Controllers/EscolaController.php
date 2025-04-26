@@ -4,37 +4,76 @@ namespace App\Http\Controllers;
 
 use App\Models\Diretor;
 use App\Models\Escola;
+use App\Models\Turma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Hash;
 
 class EscolaController extends Controller
 {
-    public function register(Request $request)
+    public function turmaCreate(Request $request)
+    {
+        $escola = Escola::all();
+        // dd($escola);
+        return view('escola.turma.create' , ['escolas' => $escola]);
+    }
+    public function turmaRegister(Request $request)
     {
         $credentials = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:escolas',
-            'password' => 'required|string',
-            'admin_id' => 'required',
+            'turma' => 'required|max:255',
+            'serie' => 'required|max:255',
+            'escola_id' => 'required',
+            'qtd_alunos' => 'required',
         ], [
-            'name.required' => 'O nome é obrigatório.',
-            'email.required' => 'O email é obrigatório.',
-            'email.email' => 'O email deve ser válido.',
-            'email.unique' => 'O email já está em uso.',
-            'password.required' => 'A senha é obrigatória.'
+            // 'name.required' => 'O nome é obrigatório.',
+            'serie.required' => 'Défina o nome da série.',
+            'turma.required' => 'Défina o nome da turma.',
+            'escola_id.required' => 'A escola é obrigatória.',
+            'qtd_alunos.required' => 'Informe a quantidade de alunos.',
         ]);
-        if ($credentials) {
-            $escola = new Escola();
-            $escola->name = $credentials['name'];
-            $escola->email = $credentials['email'];
-            $escola->admin_id = $credentials['admin_id'];
-            $escola->password = Hash::make($credentials['password']);
-            $escola->save();
-            return redirect('/admin/home')->with('success', 'Admin registered successfully.');
+        if($credentials){
+            // $escola = Escola::find($credentials['escola_id']);
+            $turma = new Turma();
+            $turma->name = $credentials['turma'];
+            $turma->serie = $credentials['serie'];
+            $turma->qtd_alunos = $credentials['qtd_alunos'];
+            $turma->escola_id = $credentials['escola_id'];
+            $turma->save();
+            return  FacadesAuth::guard('admin')->check() ? 
+            redirect('/admin/home')->with('success', 'Turma registrada com sucesso.')
+            : 
+            redirect('/diretor/home')->with('success', 'Turma registrada com sucesso.');
+            
         }
-        
         return back()->withErrors($credentials);
+    }
+    public function register(Request $request)
+    {
+        // $credentials = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:escolas',
+        //     'password' => 'required|string',
+        //     'admin_id' => 'required',
+        // ], [
+        //     'name.required' => 'O nome é obrigatório.',
+        //     'email.required' => 'O email é obrigatório.',
+        //     'email.email' => 'O email deve ser válido.',
+        //     'email.unique' => 'O email já está em uso.',
+        //     'password.required' => 'A senha é obrigatória.'
+        // ]);
+        dd($request);
+        // if ($credentials) {
+        //     $escola = new Escola();
+        //     $escola->name = $credentials['name'];
+        //     $escola->email = $credentials['email'];
+        //     $escola->admin_id = $credentials['admin_id'];
+        //     $escola->password = Hash::make($credentials['password']);
+        //     $escola->save();
+        //     return redirect('/admin/home')->with('success', 'Admin registered successfully.');
+        // }
+        
+        // return back()->withErrors($credentials);
     }
     public function getAll()
     {

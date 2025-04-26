@@ -14,7 +14,7 @@
 }
 
 body{
-    @apply bg-whiteGray;
+    @apply bg-whiteGray overflow-x-hidden;
 }
 /* button{
     @apply bg-primary text-white  cursor-pointer;
@@ -57,4 +57,7 @@ body{
 }
 button{
     cursor: pointer;
+}
+.sub-title{
+    @apply text-gray-800 font-medium text-lg my-4;
 }

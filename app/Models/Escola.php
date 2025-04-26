@@ -30,4 +30,12 @@ class Escola extends User
     {
         return $this->hasMany(Professor::class);
     }
+    public function alunos(): HasMany
+    {
+        return $this->hasMany(Aluno::class);
+    }
+    public function turmas(): HasMany
+    {
+        return $this->hasMany(Turma::class);
+    }
 }

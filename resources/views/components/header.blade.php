@@ -16,7 +16,7 @@
                     <li>
                         <a href={{ route('admin.home') }}>Home</a>
                     </li>
-                    @if (auth('admin')->check())
+                    @if (auth()->check())
                         
                     <li class="">
                         <form action={{ route('logout') }} method="post">
